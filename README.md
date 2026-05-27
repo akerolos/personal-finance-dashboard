@@ -6,7 +6,7 @@
 
 ## 🖥️ Live Demo
 
-> **[→ Open index.html in your browser to launch the app]**
+> [→ Open https://akerolos.github.io/personal-finance-dashboard/ your browser to launch the app]
 >
 > *(Host on any static server, GitHub Pages, Netlify, or Vercel — simply drop the three files and open.)*
 
