@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FinVault — Personal Finance Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════
+       SIDEBAR
+  ══════════════════════════════════════════ -->
+  <aside class="sidebar" id="sidebar" role="navigation" aria-label="Primary navigation">
+    <div class="sidebar__brand">
+      <div class="brand-icon" aria-hidden="true">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="28" height="28" rx="8" fill="url(#brandGrad)"/>
+          <path d="M9 22 L9 14 M14 22 L14 10 M19 22 L19 17 M24 22 L24 12" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          <defs>
+            <linearGradient id="brandGrad" x1="2" y1="2" x2="30" y2="30" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#10B981"/>
+              <stop offset="1" stop-color="#059669"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <span class="brand-name">FinVault</span>
+    </div>
+
+    <nav class="sidebar__nav">
+      <ul role="list">
+        <li>
+          <a href="#" class="nav-link active" data-view="dashboard" aria-current="page">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+            </svg>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-link" data-view="transactions" aria-current="false">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+            </svg>
+            <span>Transactions</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-link" data-view="analytics" aria-current="false">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+            <span>Analytics</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-link" data-view="budgets" aria-current="false">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/>
+            </svg>
+            <span>Budgets</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-link" data-view="goals" aria-current="false">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
+            </svg>
+            <span>Goals</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="sidebar__footer">
+      <div class="user-avatar" aria-hidden="true">AJ</div>
+      <div class="user-info">
+        <span class="user-name">kerolos ayman</span>
+        <span class="user-plan">Pro Member</span>
+      </div>
+      <button class="icon-btn" aria-label="Settings">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+        </svg>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ══════════════════════════════════════════
+       MOBILE HEADER
+  ══════════════════════════════════════════ -->
+  <header class="mobile-header" role="banner">
+    <button class="hamburger" id="hamburgerBtn" aria-label="Open navigation" aria-expanded="false" aria-controls="sidebar">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="mobile-brand">
+      <div class="brand-icon brand-icon--sm" aria-hidden="true">
+        <svg viewBox="0 0 32 32" fill="none"><rect x="2" y="2" width="28" height="28" rx="8" fill="url(#brandGrad2)"/><path d="M9 22 L9 14 M14 22 L14 10 M19 22 L19 17 M24 22 L24 12" stroke="white" stroke-width="2.5" stroke-linecap="round"/><defs><linearGradient id="brandGrad2" x1="2" y1="2" x2="30" y2="30"><stop stop-color="#10B981"/><stop offset="1" stop-color="#059669"/></linearGradient></defs></svg>
+      </div>
+      FinVault
+    </div>
+    <button class="btn btn--primary btn--sm" id="mobileAddBtn" aria-label="Add transaction">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    </button>
+  </header>
+
+  <!-- Sidebar overlay (mobile) -->
+  <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
+
+  <!-- ══════════════════════════════════════════
+       MAIN CONTENT
+  ══════════════════════════════════════════ -->
+  <main class="main" role="main" id="mainContent">
+
+    <!-- Page Header -->
+    <header class="page-header">
+      <div class="page-header__left">
+        <h1 class="page-title">Dashboard</h1>
+        <p class="page-subtitle">Welcome back, Alex. Here's your financial overview.</p>
+      </div>
+      <div class="page-header__right">
+        <div class="date-badge" id="currentDate" aria-label="Current date"></div>
+        <button class="btn btn--primary" id="addTransactionBtn" aria-label="Add new transaction">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="16" height="16">
+            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+          </svg>
+          Add Transaction
+        </button>
+      </div>
+    </header>
+
+    <!-- ── METRICS ROW ── -->
+    <section class="metrics-grid" aria-label="Financial metrics">
+
+      <article class="metric-card metric-card--balance" aria-label="Total balance">
+        <div class="metric-card__header">
+          <span class="metric-label">Total Balance</span>
+          <div class="metric-icon metric-icon--balance" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+          </div>
+        </div>
+        <div class="metric-value" id="totalBalance" aria-live="polite">$0.00</div>
+        <div class="metric-trend" id="balanceTrend">
+          <span class="trend-indicator trend-indicator--neutral">— No transactions yet</span>
+        </div>
+      </article>
+
+      <article class="metric-card metric-card--income" aria-label="Total income">
+        <div class="metric-card__header">
+          <span class="metric-label">Total Income</span>
+          <div class="metric-icon metric-icon--income" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          </div>
+        </div>
+        <div class="metric-value metric-value--income" id="totalIncome" aria-live="polite">$0.00</div>
+        <div class="metric-trend">
+          <span class="trend-badge trend-badge--income" id="incomeCount">0 transactions</span>
+        </div>
+      </article>
+
+      <article class="metric-card metric-card--expense" aria-label="Total expenses">
+        <div class="metric-card__header">
+          <span class="metric-label">Total Expenses</span>
+          <div class="metric-icon metric-icon--expense" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg>
+          </div>
+        </div>
+        <div class="metric-value metric-value--expense" id="totalExpenses" aria-live="polite">$0.00</div>
+        <div class="metric-trend">
+          <span class="trend-badge trend-badge--expense" id="expenseCount">0 transactions</span>
+        </div>
+      </article>
+
+      <article class="metric-card metric-card--savings" aria-label="Savings rate">
+        <div class="metric-card__header">
+          <span class="metric-label">Savings Rate</span>
+          <div class="metric-icon metric-icon--savings" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 1 10 10"/><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg>
+          </div>
+        </div>
+        <div class="metric-value metric-value--savings" id="savingsRate" aria-live="polite">0%</div>
+        <div class="metric-trend">
+          <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar__fill" id="savingsProgress" style="width:0%"></div>
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- ── CONTENT GRID (Chart + Breakdown) ── -->
+    <section class="content-grid" aria-label="Analytics and breakdown">
+
+      <!-- Spending Bar Chart -->
+      <article class="card card--chart" aria-label="Monthly spending chart">
+        <div class="card__header">
+          <h2 class="card__title">Spending Overview</h2>
+          <div class="chart-legend">
+            <span class="legend-dot legend-dot--income"></span><span>Income</span>
+            <span class="legend-dot legend-dot--expense"></span><span>Expense</span>
+          </div>
+        </div>
+        <div class="chart-container" id="barChart" aria-label="Bar chart of transactions by category">
+          <div class="chart-empty-state" id="chartEmptyState">
+            <svg viewBox="0 0 60 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" width="60" height="40" aria-hidden="true">
+              <rect x="4" y="24" width="8" height="12" rx="1" opacity=".3"/><rect x="16" y="16" width="8" height="20" rx="1" opacity=".3"/><rect x="28" y="8" width="8" height="28" rx="1" opacity=".3"/><rect x="40" y="18" width="8" height="18" rx="1" opacity=".3"/><rect x="52" y="12" width="8" height="24" rx="1" opacity=".3"/>
+            </svg>
+            <p>Add transactions to see your spending overview</p>
+          </div>
+          <div class="bar-chart" id="barChartInner" role="img" aria-label="Bar chart"></div>
+        </div>
+      </article>
+
+      <!-- Category Breakdown -->
+      <article class="card card--breakdown" aria-label="Category breakdown">
+        <div class="card__header">
+          <h2 class="card__title">Category Breakdown</h2>
+        </div>
+        <div id="categoryBreakdown" class="category-list">
+          <div class="empty-state" id="categoryEmptyState">
+            <p>No categories yet</p>
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- ── TRANSACTION HISTORY ── -->
+    <section class="card card--transactions" aria-label="Transaction history">
+      <div class="card__header">
+        <h2 class="card__title">Transaction History</h2>
+        <div class="table-controls">
+          <div class="search-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" width="14" height="14" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="search" id="searchInput" placeholder="Search transactions…" aria-label="Search transactions" autocomplete="off" />
+          </div>
+          <select id="filterType" class="filter-select" aria-label="Filter by type">
+            <option value="all">All Types</option>
+            <option value="income">Income</option>
+            <option value="expense">Expense</option>
+          </select>
+          <select id="filterCategory" class="filter-select" aria-label="Filter by category">
+            <option value="all">All Categories</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="table-wrapper" role="region" aria-label="Transactions table" tabindex="0">
+        <table class="transactions-table" id="transactionsTable">
+          <thead>
+            <tr>
+              <th scope="col" class="th-sortable" data-col="title" aria-sort="none">Transaction <span class="sort-icon" aria-hidden="true"></span></th>
+              <th scope="col" class="th-sortable" data-col="category" aria-sort="none">Category <span class="sort-icon" aria-hidden="true"></span></th>
+              <th scope="col" class="th-sortable" data-col="date" aria-sort="descending">Date <span class="sort-icon" aria-hidden="true">↓</span></th>
+              <th scope="col" class="th-sortable" data-col="amount" aria-sort="none">Amount <span class="sort-icon" aria-hidden="true"></span></th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="transactionsTbody">
+            <!-- Populated by JS -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Empty state for table -->
+      <div class="table-empty" id="tableEmpty" aria-live="polite">
+        <div class="table-empty__icon" aria-hidden="true">
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" width="80" height="80">
+            <circle cx="40" cy="40" r="38" stroke="currentColor" stroke-width="1.5" opacity=".2"/>
+            <path d="M28 40h24M40 28v24" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".4"/>
+          </svg>
+        </div>
+        <h3>No transactions yet</h3>
+        <p>Click "Add Transaction" to record your first income or expense.</p>
+        <button class="btn btn--primary" id="emptyStateAddBtn">Add Your First Transaction</button>
+      </div>
+
+      <div class="table-footer" id="tableFooter" hidden>
+        <span id="tableCount" class="table-count"></span>
+        <button class="btn btn--ghost btn--sm" id="clearAllBtn" aria-label="Clear all transactions">Clear All</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════
+       ADD TRANSACTION MODAL
+  ══════════════════════════════════════════ -->
+  <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDesc" hidden>
+    <div class="modal" id="modal">
+      <div class="modal__header">
+        <div>
+          <h2 class="modal__title" id="modalTitle">Add Transaction</h2>
+          <p class="modal__desc" id="modalDesc">Record a new income or expense entry.</p>
+        </div>
+        <button class="modal__close icon-btn" id="closeModalBtn" aria-label="Close modal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="18" height="18"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <!-- Type Toggle -->
+      <div class="type-toggle" role="radiogroup" aria-label="Transaction type">
+        <button class="type-btn type-btn--income active" data-type="income" role="radio" aria-checked="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="16" height="16"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          Income
+        </button>
+        <button class="type-btn type-btn--expense" data-type="expense" role="radio" aria-checked="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="16" height="16"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg>
+          Expense
+        </button>
+      </div>
+
+      <form class="transaction-form" id="transactionForm" novalidate autocomplete="off">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="txTitle">Title <span aria-hidden="true">*</span></label>
+            <input class="form-input" type="text" id="txTitle" name="title" placeholder="e.g. Freelance Payment" maxlength="60" required aria-required="true" aria-describedby="txTitleError" />
+            <span class="form-error" id="txTitleError" role="alert" aria-live="polite"></span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="txAmount">Amount <span aria-hidden="true">*</span></label>
+            <div class="input-with-prefix">
+              <span class="input-prefix" aria-hidden="true">$</span>
+              <input class="form-input form-input--prefixed" type="number" id="txAmount" name="amount" placeholder="0.00" min="0.01" step="0.01" required aria-required="true" aria-describedby="txAmountError" />
+            </div>
+            <span class="form-error" id="txAmountError" role="alert" aria-live="polite"></span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="txCategory">Category <span aria-hidden="true">*</span></label>
+            <div class="select-wrapper">
+              <select class="form-input form-select" id="txCategory" name="category" required aria-required="true" aria-describedby="txCategoryError">
+                <option value="" disabled selected>Select a category</option>
+                <optgroup label="Income">
+                  <option value="Salary">Salary</option>
+                  <option value="Freelance">Freelance</option>
+                  <option value="Investment">Investment</option>
+                  <option value="Business">Business</option>
+                  <option value="Gift">Gift</option>
+                  <option value="Other Income">Other Income</option>
+                </optgroup>
+                <optgroup label="Expense">
+                  <option value="Housing">Housing</option>
+                  <option value="Food &amp; Dining">Food &amp; Dining</option>
+                  <option value="Transportation">Transportation</option>
+                  <option value="Healthcare">Healthcare</option>
+                  <option value="Entertainment">Entertainment</option>
+                  <option value="Shopping">Shopping</option>
+                  <option value="Education">Education</option>
+                  <option value="Utilities">Utilities</option>
+                  <option value="Subscriptions">Subscriptions</option>
+                  <option value="Other Expense">Other Expense</option>
+                </optgroup>
+              </select>
+              <svg class="select-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="14" height="14"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+            <span class="form-error" id="txCategoryError" role="alert" aria-live="polite"></span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="txDate">Date <span aria-hidden="true">*</span></label>
+            <input class="form-input" type="date" id="txDate" name="date" required aria-required="true" aria-describedby="txDateError" />
+            <span class="form-error" id="txDateError" role="alert" aria-live="polite"></span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="txNote">Note <span class="optional-label">(optional)</span></label>
+          <input class="form-input" type="text" id="txNote" name="note" placeholder="Add a short note…" maxlength="120" />
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn btn--ghost" id="cancelModalBtn">Cancel</button>
+          <button type="submit" class="btn btn--primary" id="submitTransactionBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="16" height="16"><polyline points="20 6 9 17 4 12"/></svg>
+            Save Transaction
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       DELETE CONFIRMATION MODAL
+  ══════════════════════════════════════════ -->
+  <div class="modal-backdrop modal-backdrop--confirm" id="confirmBackdrop" role="alertdialog" aria-modal="true" aria-labelledby="confirmTitle" hidden>
+    <div class="modal modal--sm" id="confirmModal">
+      <div class="confirm-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" width="28" height="28"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+      </div>
+      <h2 class="modal__title" id="confirmTitle">Delete Transaction?</h2>
+      <p class="confirm-message" id="confirmMessage">This action cannot be undone.</p>
+      <div class="form-actions">
+        <button class="btn btn--ghost" id="cancelDeleteBtn">Cancel</button>
+        <button class="btn btn--danger" id="confirmDeleteBtn">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast notifications -->
+  <div class="toast-container" id="toastContainer" aria-live="assertive" aria-atomic="true" role="status"></div>
+
+  <script src="main.js"></script>
+</body>
+</html>
